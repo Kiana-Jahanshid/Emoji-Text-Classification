@@ -27,7 +27,7 @@ python emoji_classification.py
 | 300d  | 0.09   | 1.0   | 0.39   | 0.82   | Content   |
 
 
-### With Dropout = 0.4 :
+## With Dropout = 0.4 :
 
 | Feature vectors Dimension   | Train Loss  | Train Accuracy   | Test Loss  | Test Accuracy   | Inference time  |
 | :-------------: | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -38,5 +38,8 @@ python emoji_classification.py
 
 
 + ## Dropout conclusion :
-Using Dropout causes higher values in Test Accuracy of higher dimensions   . 🔺 <br/>
-But instead , Train accuracy value decreased in all dimensions. 🔻
+```
+🔺 Using Dropout causes higher values in "Test Accuracy" in higher dimensions;and resulting in better performance on unseen data(in larger dimensions)  
+
+🔻 But instead , "Train accuracy" values have been decreased in all dimensions versus first table . 
+```
