@@ -27,16 +27,16 @@ python emoji_classification.py
 | 300d  | 0.09   | 1.0   | 0.39   | 0.82   | Content   |
 
 
-### With Dropout :
+### With Dropout = 0.4 :
 
 | Feature vectors Dimension   | Train Loss  | Train Accuracy   | Test Loss  | Test Accuracy   | Inference time  |
 | :-------------: | ------------- | ------------- | ------------- | ------------- | ------------- |
-| 50d  | 0.79  | 0.70  | 0.71  | 0.82  | Content   |
+| 50d  | 0.79  | 0.70  | 0.71  | 0.78  | Content   |
 | 100d | 0.64   | 0.78   | 0.63   | 0.82   | Content   |
 | 200d  | 0.36   | 0.89   | 0.45   | 0.83   | Content   |
 | 300d  | 0.20   | 0.95   | 0.44   | 0.85   | Content   |
 
 
 + ## Dropout conclusion :
-Using Dropout causes higher values in Test Accuracy . 🔺 <br/>
-But instead , Train accuracy value decreased . 🔻
+Using Dropout causes higher values in Test Accuracy of higher dimensions   . 🔺 <br/>
+But instead , Train accuracy value decreased in all dimensions. 🔻
