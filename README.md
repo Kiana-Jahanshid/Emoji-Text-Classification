@@ -2,7 +2,10 @@
 
 
 # Description :
-
+Here , we have used  `glove.6B.zip` pre-trained word vectors To sum the feature vector corresponding to each word in each sentence . <br/>
+We summed the feature vectors of all of the words in every sentence .
+As a result, we have a single summed feature vector for 'each sentence' of the test and train files. <br/>
+Finally, we feed the summed feature vectors corresponding to each sentence , to the network , as new form of X_train and X_test .
 
 # How to install 
 ```
