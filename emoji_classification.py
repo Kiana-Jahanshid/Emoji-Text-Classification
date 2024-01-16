@@ -28,7 +28,7 @@ class EmojiTextClassifier :
         words_in_test_sentence =  sentence.strip().split()
         if '"' in words_in_test_sentence :
             words_in_test_sentence.remove('"')
-        sum_of_features = np.zeros((300,))
+        sum_of_features = np.zeros((100,))
         for word in words_in_test_sentence :
             sum_of_features +=  glove_word_vectors[word]
         Average_Vector = sum_of_features / len(words_in_test_sentence)
@@ -36,7 +36,8 @@ class EmojiTextClassifier :
 
     def load_model(self):
         model = tf.keras.models.Sequential([
-            tf.keras.layers.Dense(5 , input_shape=(300,) , activation="softmax")
+            tf.keras.layers.Dropout(0.4, input_shape=(100,)),
+            tf.keras.layers.Dense(5 , input_shape=(100,) , activation="softmax")
         ])
         return model
     
@@ -82,7 +83,7 @@ if __name__ == "__main__" :
     X_train , Y_train = obj.load_dataset("dataset/train.csv")
     X_test  , Y_test  = obj.load_dataset("dataset/test.csv")
 
-    glove_word_vectors = obj.load_feature_vectors("glove.6B/glove.6B.300d.txt")
+    glove_word_vectors = obj.load_feature_vectors("glove.6B/glove.6B.100d.txt")
     model = obj.load_model()
     obj.train(model , X_train , Y_train , glove_word_vectors)
     print("\nEVALUATION : ")
