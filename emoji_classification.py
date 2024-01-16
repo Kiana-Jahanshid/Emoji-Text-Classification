@@ -1,10 +1,11 @@
+import time 
 import pandas as pd 
 import tensorflow as tf
 import numpy as np 
 
 class EmojiTextClassifier :
     def __init__(self):
-        pass
+        self.dimension = 200
 
     def load_dataset(self , file_path):
         df = pd.read_csv(file_path)
@@ -27,7 +28,7 @@ class EmojiTextClassifier :
         words_in_test_sentence =  sentence.strip().split()
         if '"' in words_in_test_sentence :
             words_in_test_sentence.remove('"')
-        sum_of_features = np.zeros((300,))
+        sum_of_features = np.zeros((self.dimension,))
         for word in words_in_test_sentence :
             sum_of_features +=  glove_word_vectors[word]
         Average_Vector = sum_of_features / len(words_in_test_sentence)
@@ -35,8 +36,8 @@ class EmojiTextClassifier :
 
     def load_model(self):
         model = tf.keras.models.Sequential([
-            tf.keras.layers.Dropout(0.4, input_shape=(300,)),
-            tf.keras.layers.Dense(5 , input_shape=(300,) , activation="softmax")
+            tf.keras.layers.Dropout(0.4, input_shape=(self.dimension,)),
+            tf.keras.layers.Dense(5 , input_shape=(self.dimension,) , activation="softmax")
         ])
         return model
     
@@ -82,10 +83,13 @@ if __name__ == "__main__" :
     X_train , Y_train = obj.load_dataset("dataset/train.csv")
     X_test  , Y_test  = obj.load_dataset("dataset/test.csv")
 
-    glove_word_vectors = obj.load_feature_vectors("glove.6B/glove.6B.300d.txt")
+    glove_word_vectors = obj.load_feature_vectors(f"glove.6B/glove.6B.{obj.dimension}d.txt")
     model = obj.load_model()
     obj.train(model , X_train , Y_train , glove_word_vectors)
     print("\nEVALUATION : ")
     obj.test(model , X_test ,Y_test , glove_word_vectors)
     print("\nPREDICTION : ")
+    start = time.time()
     obj.predict(model , "i love AI" , glove_word_vectors)
+    inference_time = time.time() - start
+    print("Inference time : " , inference_time)
