@@ -2,6 +2,7 @@ import time
 import pandas as pd 
 import tensorflow as tf
 import numpy as np 
+import argparse
 
 class EmojiTextClassifier :
     def __init__(self):
@@ -79,11 +80,17 @@ class EmojiTextClassifier :
 
     
 if __name__ == "__main__" :
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sentence" , type=str , help="write your own sentence")
+    parser.add_argument("--dimension" , type=str , help="write dimension of vectors : 50d/100d/200d/300d")
+    arg= parser.parse_args()
+    
     obj = EmojiTextClassifier()
     X_train , Y_train = obj.load_dataset("dataset/train.csv")
     X_test  , Y_test  = obj.load_dataset("dataset/test.csv")
 
-    path = f"glove.6B/glove.6B.{obj.dimension}d.txt"
+    path = f"glove.6B/glove.6B.{arg.dimension}.txt"
     glove_word_vectors = obj.load_feature_vectors(path)
     model = obj.load_model()
     obj.train(model , X_train , Y_train , glove_word_vectors)
@@ -92,8 +99,11 @@ if __name__ == "__main__" :
     obj.test(model , X_test ,Y_test , glove_word_vectors)
     
     print("\nPREDICTION : ")
-    user_sentence = "i love AI"
+    user_sentence = arg.sentence
     start = time.time()
     obj.predict(model , user_sentence , glove_word_vectors)
     inference_time = time.time() - start
     print("Inference time : " , inference_time)
+
+
+# python emoji_classification.py --sentence "I Love AI" --dimension "200d"  
