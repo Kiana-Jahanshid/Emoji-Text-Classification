@@ -83,13 +83,17 @@ if __name__ == "__main__" :
     X_train , Y_train = obj.load_dataset("dataset/train.csv")
     X_test  , Y_test  = obj.load_dataset("dataset/test.csv")
 
-    glove_word_vectors = obj.load_feature_vectors(f"glove.6B/glove.6B.{obj.dimension}d.txt")
+    path = f"glove.6B/glove.6B.{obj.dimension}d.txt"
+    glove_word_vectors = obj.load_feature_vectors(path)
     model = obj.load_model()
     obj.train(model , X_train , Y_train , glove_word_vectors)
+    
     print("\nEVALUATION : ")
     obj.test(model , X_test ,Y_test , glove_word_vectors)
+    
     print("\nPREDICTION : ")
+    user_sentence = "i love AI"
     start = time.time()
-    obj.predict(model , "i love AI" , glove_word_vectors)
+    obj.predict(model , user_sentence , glove_word_vectors)
     inference_time = time.time() - start
     print("Inference time : " , inference_time)
