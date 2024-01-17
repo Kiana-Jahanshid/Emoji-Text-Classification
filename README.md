@@ -13,7 +13,7 @@ pip -r install requirements.txt
 ```
 
 # How to run :
-you should write your desire sentence an dimension like below command :
+you should write your desired sentence and dimension like below command :
 
 ```
 python emoji_classification.py --sentence "I Love AI" --dimension "200"   
