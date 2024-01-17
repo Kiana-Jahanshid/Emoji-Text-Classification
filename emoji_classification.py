@@ -5,8 +5,8 @@ import numpy as np
 import argparse
 
 class EmojiTextClassifier :
-    def __init__(self):
-        self.dimension = 200
+    def __init__(self , arg):
+        self.dimension = int(arg.dimension)
 
     def load_dataset(self , file_path):
         df = pd.read_csv(file_path)
@@ -83,14 +83,14 @@ if __name__ == "__main__" :
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--sentence" , type=str , help="write your own sentence")
-    parser.add_argument("--dimension" , type=str , help="write dimension of vectors : 50d/100d/200d/300d")
+    parser.add_argument("--dimension" , type=str , help="write dimension of vectors : 50/100/200/300")
     arg= parser.parse_args()
     
-    obj = EmojiTextClassifier()
+    obj = EmojiTextClassifier(arg)
     X_train , Y_train = obj.load_dataset("dataset/train.csv")
     X_test  , Y_test  = obj.load_dataset("dataset/test.csv")
 
-    path = f"glove.6B/glove.6B.{arg.dimension}.txt"
+    path = f"glove.6B/glove.6B.{arg.dimension}d.txt"
     glove_word_vectors = obj.load_feature_vectors(path)
     model = obj.load_model()
     obj.train(model , X_train , Y_train , glove_word_vectors)
@@ -106,4 +106,4 @@ if __name__ == "__main__" :
     print("Inference time : " , inference_time)
 
 
-# python emoji_classification.py --sentence "I Love AI" --dimension "200d"  
+# python emoji_classification.py --sentence "i hate fish" --dimension "50"  
