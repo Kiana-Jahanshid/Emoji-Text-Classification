@@ -99,11 +99,15 @@ if __name__ == "__main__" :
     obj.test(model , X_test ,Y_test , glove_word_vectors)
     
     print("\nPREDICTION : ")
+    total_time = 0 
     user_sentence = arg.sentence
-    start = time.time()
-    obj.predict(model , user_sentence , glove_word_vectors)
-    inference_time = time.time() - start
-    print("Inference time : " , inference_time)
+    for i in range(100):
+        start = time.time()
+        obj.predict(model , user_sentence , glove_word_vectors)
+        inference_time = time.time() - start
+        total_time+= inference_time
+    total_inference_time = total_time / 100
+    print("Inference time : " , total_inference_time)
 
 
-# python emoji_classification.py --sentence "i hate fish" --dimension "50"  
+# python emoji_classification.py --sentence "i hate eating fish" --dimension "200"  
