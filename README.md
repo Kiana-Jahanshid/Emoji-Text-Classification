@@ -33,12 +33,12 @@ python emoji_classification.py --sentence "I Love AI" --dimension "200"
 
  With Dropout = 0.4 :
 
-| Feature vectors Dimension   | Train Loss  | Train Accuracy   | Test Loss  | Test Accuracy   | Inference time  |
-| :-------------: | ------------- | ------------- | ------------- | ------------- | ------------- |
-| 50d  | 0.79  | 0.70  | 0.71  | 0.78  | 0.046  |
-| 100d | 0.64  | 0.78  | 0.63  | 0.82  | 0.0462 |
-| 200d | 0.36  | 0.89  | 0.45  | 0.83  | 0.0463 |
-| 300d | 0.20  | 0.95  | 0.44  | 0.85  | 0.0478 |
+| Feature vectors Dimension   | Train Loss  | Train Accuracy   | Test Loss  | Test Accuracy   |
+| :-------------: | ------------- | ------------- | ------------- | ------------- |
+| 50d  | 0.79  | 0.70  | 0.71  | 0.78  | 
+| 100d | 0.64  | 0.78  | 0.63  | 0.82  |
+| 200d | 0.36  | 0.89  | 0.45  | 0.83  | 
+| 300d | 0.20  | 0.95  | 0.44  | 0.85  | 
 
 + ## Dropout conclusion :
 
