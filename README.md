@@ -16,7 +16,7 @@ pip -r install requirements.txt
 you should write your desired sentence and dimension like below command :
 
 ```
-python emoji_classification.py --sentence "I Love AI" --dimension "200"   
+python emoji_classification.py --sentence "I Love AI" --dimension 200  
 ```
 
 
